@@ -85,11 +85,13 @@ print(f"Size of the dataloader: {len(dataloader) * batch_size}")
 device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else "cpu")
 
 # Plot some training images
+figures_path = f"{path}/data/output_data"
 real_batch = next(iter(dataloader))
 plt.figure(figsize=(8,8))
 plt.axis("off")
 plt.title("Training Images")
 plt.imshow(np.transpose(vutils.make_grid(real_batch[0].to(device)[:64], padding=2, normalize=True).cpu(),(1,2,0)))
+plt.savefig(f"{figures_path}/example_images.png")
 plt.show()
 
 
